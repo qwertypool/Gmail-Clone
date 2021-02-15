@@ -37,7 +37,6 @@ class _TestState extends State<Test> {
             children: <Widget>[
              new Icon(Icons.mail,size: 35,),
       new Positioned(
-        
         right: 0,
         top: 0.0,
         child: new Container(
