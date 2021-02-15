@@ -66,26 +66,6 @@ class _GmailState extends State<Gmail> {
         ],
       ),
       body: SingleChildScrollView(
-        // child: Column(
-        //   children: [
-        //     Container(
-        //       height: 60,
-        //       color: Colors.pink,
-        //     ),
-        //     Container(
-        //       height: 60,
-        //       color: Colors.yellow,
-        //     ),
-        //     Container(
-        //       height: 60,
-        //       color: Colors.green,
-        //     ),
-        //     SizedBox(
-        //       height: 20,
-        //     ),
-        //   ],
-        // ),
-
         child: Container(
           padding: EdgeInsets.all(16.0),
           child: Column(

@@ -24,18 +24,15 @@ class _TestState extends State<Test> {
       drawer: Drawers(),
       appBar: Appbars(),
       floatingActionButton: FloatingActionButtons(),
-
       body: _children[_currentIndex],
-
       bottomNavigationBar: BottomNavigationBar(
-      
       fixedColor: Colors.red,
        onTap: onTabTapped, // new
        currentIndex: _currentIndex, // new
        items: [
          new BottomNavigationBarItem(
            icon: Padding(
-             padding: EdgeInsets.fromLTRB(0.0,4.0,0.0,0),
+             padding: EdgeInsets.fromLTRB(0.0,0.0,0.0,0),
              child: new Stack(
             children: <Widget>[
              new Icon(Icons.mail,size: 35,),

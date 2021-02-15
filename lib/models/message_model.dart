@@ -1,5 +1,5 @@
 import 'package:demo3/models/user_model.dart';
-
+import 'package:flutter/material.dart';
 class Message {
   final User sender;
   final String time;
@@ -17,43 +17,39 @@ class Message {
   });
 }
 
-final User currentUser =
-    User(id: 0, name: 'Deepa Pandey', imageUrl: 'assets/deepa2.jpg');
-final User linkedln = User(id: 1, name: 'Linkedln', imageUrl: 'assets/ln.jpg');
-final User sugar =
-    User(id: 2, name: 'Sugar Cosmetics', imageUrl: 'assets/s.jpg');
-final User medium =
-    User(id: 3, name: 'Medium Daily Digest', imageUrl: 'assets/m.jpg');
-final User amazon = User(id: 4, name: 'Amazon.in', imageUrl: 'assets/A.jpg');
-final User deepak =
-    User(id: 5, name: 'Deepak Pandey', imageUrl: 'assets/d.jpg');
-final User balram =
-    User(id: 6, name: 'Balram Rathore', imageUrl: 'assets/b.jpg');
-final User leetcode = User(id: 7, name: 'LeetCode', imageUrl: 'assets/L.jpg');
+final User currentUser =User(id: 0, name: 'Deepa Pandey', imageUrl: Colors.red);
+final User linkedln = User(id: 1, name: 'Linkedln', imageUrl: Colors.orange);
+final User sugar = User(id: 2, name: 'Sugar Cosmetics', imageUrl: Colors.grey);
+final User medium = User(id: 3, name: 'Medium Daily Digest', imageUrl: Colors.pink[900]);
+final User amazon = User(id: 4, name: 'Amazon.in', imageUrl: Colors.yellow);
+final User deepak = User(id: 5, name: 'Deepak Pandey', imageUrl: Colors.red);
+final User balram = User(id: 6, name: 'Balram Rathore', imageUrl:Colors.teal);
+final User leetcode = User(id: 7, name: 'LeetCode', imageUrl: Colors.blueGrey);
+final User digitalocean = User(id: 8, name: 'Digital Ocean', imageUrl: Colors.deepPurpleAccent);
 
 //Chats on Mail Screen
 
-List<Message> chats = [
+List<Message> mails = [
   Message(
     sender: linkedln,
     time: '10:30 PM',
-    text: 'View jobs in Bengaluru,Karnataka,India, match your preferences',
+    text: 'View jobs in Bengaluru, Karnataka, India, match your preferences',
     subject: '11 new jobs for "Full Stack Engineers" ',
-    isStarred: false,
-    unread: false,
+    isStarred: true,
+    unread: true,
   ),
   Message(
     sender: sugar,
     time: '9:55 PM',
     text: 'Get the best ❤️red❤️ mini Lipstick💄 Set at a complete 25% discount',
-    subject: 'Limited-edition- V-day 💄',
+    subject: 'Limited-edition V-day 💄',
     isStarred: false,
-    unread: true,
+    unread: false,
   ),
   Message(
     sender: medium,
     time: '9:05 PM',
-    text: 'Stories for Deepa Pandey : How I got engineering internships in',
+    text: 'Stories for Deepa Pandey : How I got an engineering internships in',
     subject: 'Simple SQFlite databases examples in flutter',
     isStarred: false,
     unread: true,
@@ -63,8 +59,8 @@ List<Message> chats = [
     time: '8:30 PM',
     text: 'Amazon Orders|1 of 5 items order has been dispatched',
     subject: 'Your Amazon.in order #205-304458 of 1 item has been dispatched',
-    isStarred: true,
-    unread: false,
+    isStarred: false,
+    unread: true,
   ),
   Message(
     sender: deepak,
@@ -85,9 +81,17 @@ List<Message> chats = [
   Message(
     sender: leetcode,
     time: 'Feb 11',
-    text: 'Hello!🎉 Congratulations to our first leetcodes Pick winner',
+    text: 'Hello!🎉 Congratulations to our 1st leetcodes Pick winner',
     subject: 'Leetcode Weekly Digest',
     isStarred: true,
+    unread: true,
+  ),
+  Message(
+    sender: digitalocean,
+    time: 'Feb 10',
+    text: 'Get your Dev Badge at Hacktoberfest ,just by login into the Dev Website ',
+    subject: 'Dev Badge @Hacktoberfest',
+    isStarred: false,
     unread: true,
   ),
 ];

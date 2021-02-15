@@ -72,9 +72,9 @@ flutter:
         - asset: fonts/Cinzel-ExtraBold.ttf
   #       - asset: fonts/Schyler-Italic.ttf
           style: italic
-    - family: Roboto
-      fonts:
-        - asset: fonts/Roboto-Regular.ttf
+    # - family: Roboto
+    #   fonts:
+    #     - asset: fonts/Roboto-Regular.ttf
        
     - family: LexendMega
       fonts:
