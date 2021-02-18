@@ -1,17 +1,27 @@
 // Copyright 2019 The Flutter Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
-
+import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:demo3/models/user_model.dart';
+// import 'package:demo3/models/message_model.dart';
 
 class Exg extends StatefulWidget {
-  Exg({Key key}) : super(key: key);
+ // Exg({Key key}) : super(key: key);
+   final User user;
+   final Color image;
+   final String time;
+   final String text;
+   final String subject;
+   final bool isstarred;
 
+  Exg({this.user,this.image,this.time,this.text,this.subject,this.isstarred});
   @override
   _ExgState createState() => _ExgState();
 }
 
 class _ExgState extends State<Exg> {
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,13 +82,18 @@ class _ExgState extends State<Exg> {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        'Sugar Cosmetics Voucher',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          color: Colors.black,
-                        ),
-                      ),
+                       FittedBox(
+                         fit: BoxFit.cover,
+                         child: Text(
+                              widget.subject,
+                              style: TextStyle(
+                               // fontSize: ResponsiveFlutter.of(context).fontSize(3),
+                               fontSize: 20,
+                                color: Colors.black,
+                              ),
+                            ),
+                       ),
+                      
                       SizedBox(
                         width: 8.0,
                       ),
@@ -177,49 +192,6 @@ class _ExgState extends State<Exg> {
           ),
         ),
       ),
-
-      // floatingActionButton: FloatingActionButton.extended(
-      //   onPressed: () {
-      //     print("pressed");},
-      //   icon: Icon(Icons.reply),
-      //   label: Text("Reply"),
-      //   shape: RoundedRectangleBorder(
-      //   borderRadius: BorderRadius.all(Radius.circular(8.0))),
-      // ),
-
-      // bottomNavigationBar : Stack(
-      // children: <Widget>[
-      //   Align(
-      //     alignment: Alignment.bottomLeft,
-      //     child: FloatingActionButton.extended(onPressed: () {
-      //         print("pressed");},
-      //       icon: Icon(Icons.reply),
-      //       label: Text("Reply"),
-      //       backgroundColor: Colors.white60,
-      //       shape: RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.all(Radius.circular(8.0))),),
-      //   ),],
-      // )
-
-      // bottomNavigationBar:BottomAppBar(
-
-      //   child: new Row(
-      //     children: [
-      //     Expanded(child: RaisedButton.icon(onPressed: () {},icon : Icon(Icons.reply_sharp),label:Text('Reply',style: TextStyle(fontSize: 15,color: Colors.black),),color: Colors.white,splashColor:Colors.grey[800],),),
-      //     Expanded(child: RaisedButton.icon(onPressed: () {},icon : Icon(Icons.reply_all),label:Text('Reply all',style: TextStyle(fontSize: 15,color: Colors.black),),color: Colors.white,),),
-      //     Expanded(child: RaisedButton.icon(onPressed: () {},icon : Icon(Icons.forward),label:Text('Forward',style: TextStyle(fontSize: 15,color: Colors.black),),color: Colors.white,),),
-      //Expanded(
-      //child: ElevatedButton.icon(style:ButtonStyle(backgroundColor:MaterialStateProperty.all<Color>(Colors.white70)),icon:const Icon(Icons.reply,color: Colors.black,size: 35.0,),label: Text('Reply',style: TextStyle(color: Colors.black),),onPressed: () {},)),
-      //Expanded(child:  ElevatedButton.icon(icon:const Icon(Icons.reply_all),label: Text('Reply all'),onPressed: () {},)),
-      // Expanded(child:ElevatedButton.icon(icon:const Icon(Icons.forward),label: Text('Forward'),onPressed: () {},)),
-
-      // Expanded(
-      //   child: IconButton(onPressed: () {},tooltip: 'Reply',icon : Icon(Icons.reply)),
-      //   ),
-      // Expanded(child: IconButton(onPressed: () {}, icon: Icon(Icons.reply_all,)),),
-      // Expanded(child: IconButton(onPressed: () {}, icon: Icon(Icons.forward)),),
-
-      //],
     );
   }
 }

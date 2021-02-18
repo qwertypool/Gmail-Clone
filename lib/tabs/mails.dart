@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:demo3/models/message_model.dart';
 import 'package:demo3/tabs/gmail.dart';
+// import 'package:demo3/tabs/exg.dart';
+// import 'package:demo3/models/user_model.dart';
 import 'dart:math';
 
 class Mails extends StatefulWidget {
@@ -24,13 +26,11 @@ class _MailsState extends State<Mails> {
             child: Text('INBOX',style : TextStyle(color: Colors.grey[800],fontSize: 12.5)),
           ), 
             Container(
-             // _mediaQueryData = MediaQuery.of(context).size.width*10,
               height: MediaQuery.of(context).size.height * 0.72,
               width: MediaQuery.of(context).size.width * 1.0,
               padding: EdgeInsets.all(2.0),
-        //decoration: BoxDecoration(color: Colors.white),
               child: ClipRRect(
-                              child: ListView.builder(
+                  child: ListView.builder(
                   itemCount: mails.length,
                   itemBuilder: (BuildContext context, int index) {
                   return Row(
@@ -53,7 +53,14 @@ class _MailsState extends State<Mails> {
                               SizedBox(height: 30.0,),
                             GestureDetector(
                               onTap:()=>Navigator.push(
-                              context, MaterialPageRoute(builder: (_)=>Gmail())
+                              context, MaterialPageRoute(builder: (_)=>Gmail(
+                                user:mails[index].sender,
+                                image : mails[index].sender.imageUrl,
+                                time : mails[index].time,
+                                text : mails[index].text,
+                                subject : mails[index].subject,
+                                isstarred : mails[index].isStarred,
+                              ))
                               ),
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -406,6 +406,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  responsive_flutter:
+    dependency: "direct main"
+    description:
+      name: responsive_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4"
   scoped_model:
     dependency: transitive
     description:

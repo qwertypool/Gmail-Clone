@@ -1,10 +1,23 @@
 import 'dart:ui';
 
+import 'package:demo3/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class Gmail extends StatefulWidget {
-  const Gmail({Key key}) : super(key: key);
+  final User user;
+  final Color image;
+  final String time;
+  final String text;
+  final String subject;
+  final bool isstarred;
 
+  Gmail(
+      {this.user,
+      this.image,
+      this.time,
+      this.text,
+      this.subject,
+      this.isstarred});
   @override
   _GmailState createState() => _GmailState();
 }
@@ -38,27 +51,35 @@ class _GmailState extends State<Gmail> {
             onSelected: (value) {
               print(value);
             },
-            itemBuilder: (BuildContext contesxt) {
+            itemBuilder: (BuildContext context) {
               return [
                 PopupMenuItem(
-                  child: Text("New group"),
-                  value: "New grou",
+                  child: Text("Move  to"),
+                  value: "moveto",
                 ),
                 PopupMenuItem(
-                  child: Text("New broadcast"),
-                  value: "New broadcast",
+                  child: Text("Snooze"),
+                  value: "snooze",
                 ),
                 PopupMenuItem(
-                  child: Text("Whatsapp Web"),
-                  value: "Whatsapp Web",
+                  child: Text("Mark Important"),
+                  value: "mark_imp",
                 ),
                 PopupMenuItem(
-                  child: Text("Starred messages"),
-                  value: "Starred messages",
+                  child: Text("Mute"),
+                  value: "mute",
                 ),
                 PopupMenuItem(
-                  child: Text("Settings"),
-                  value: "Settings",
+                  child: Text("Report Spam"),
+                  value: "report_spam",
+                ),
+                PopupMenuItem(
+                  child: Text("Add to tasks"),
+                  value: "add_to_tasks",
+                ),
+                PopupMenuItem(
+                  child: Text("Help & Feedback"),
+                  value: "help",
                 ),
               ];
             },
@@ -75,18 +96,23 @@ class _GmailState extends State<Gmail> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
+                    // mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        'Limited-edition V-day💄✨',
-                        maxLines: 2,
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          color: Colors.black,
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        height: 50,
+                        child: Text(
+                          widget.subject,
+                          maxLines: 3,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
-                      SizedBox(
-                        width: 4.0,
-                      ),
+                      // SizedBox(
+                      //   width: 4.0,
+                      // ),
                       Container(
                         color: Colors.grey[300],
                         child: Padding(
@@ -103,24 +129,27 @@ class _GmailState extends State<Gmail> {
                     ],
                   ),
                   Row(children: [
-                    Container(
-                      padding: EdgeInsets.all(0.0),
-                      //width: 30.0,
-                      child: IconButton(
-                        constraints: BoxConstraints(),
-                        icon: Icon(Icons.star_border_outlined),
-                        // color: _hasBeenPressed ? Colors.purple : Colors.black,
-                        color: x,
-                        iconSize: 30.0,
-                        tooltip: 'Star message',
-                        onPressed: () {
-                          // setState(() {
-                          //   //_hasBeenPressed = !_hasBeenPressed;
-                          //   x = Colors.yellow;
-                          // });
-                          _onBtnClicked();
-                        },
-                      ),
+                    IconButton(
+                      constraints: BoxConstraints(),
+                      icon: _hasBeenPressed
+                          ? Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                            )
+                          : Icon(Icons.star_border_outlined),
+
+                      // color: _hasBeenPressed ? Colors.purple : Colors.black,
+                      //color: x,
+                      iconSize: 30.0,
+                      tooltip: 'Star message',
+                      onPressed: ()=> {
+                        setState(() => {
+                          _hasBeenPressed = !_hasBeenPressed,
+                          print(_hasBeenPressed),
+                          // x = Colors.yellow;
+                        }),
+                        // _onBtnClicked();
+                      },
                     ),
                   ])
                 ],
@@ -140,7 +169,7 @@ class _GmailState extends State<Gmail> {
                           color: Colors.pink[400], shape: BoxShape.circle),
                       child: Center(
                         child: Text(
-                          'S',
+                          widget.user.name[0],
                           style: TextStyle(
                             fontSize: 25.0,
                             fontFamily: 'Cinzel',
@@ -159,7 +188,7 @@ class _GmailState extends State<Gmail> {
                       Row(
                         children: [
                           Text(
-                            'Sugar Cosmetics',
+                            widget.user.name,
                             style:
                                 TextStyle(color: Colors.black, fontSize: 20.0),
                           ),
@@ -167,7 +196,7 @@ class _GmailState extends State<Gmail> {
                             width: 8.0,
                           ),
                           Text(
-                            '5:10 PM',
+                            widget.time,
                             style: TextStyle(
                                 color: Colors.grey[800], fontSize: 11.0),
                           )
@@ -219,7 +248,7 @@ class _GmailState extends State<Gmail> {
                     // height: 1000,
                     // color: Colors.pink[50],
                     child: Text(
-                      longString,
+                      widget.text,
                       style: TextStyle(
                         fontSize: 15.0,
                         letterSpacing: 2.0,

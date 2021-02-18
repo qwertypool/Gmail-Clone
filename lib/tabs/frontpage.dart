@@ -6,14 +6,14 @@ import 'package:demo3/tabs/drawer.dart';
 import 'package:demo3/tabs/appbar.dart';
 import 'package:demo3/tabs/floatingbtn.dart';
 
-class Test extends StatefulWidget {
-  const Test({Key key}) : super(key: key);
+class FrontPage extends StatefulWidget {
+  const FrontPage({Key key}) : super(key: key);
 
   @override
-  _TestState createState() => _TestState();
+  _FrontPageState createState() => _FrontPageState();
 }
 
-class _TestState extends State<Test> {
+class _FrontPageState extends State<FrontPage> {
 
  int _currentIndex = 0;
  final List<Widget> _children = [Mails(),Meet()];
