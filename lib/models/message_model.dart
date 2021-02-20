@@ -26,6 +26,10 @@ final User deepak = User(id: 5, name: 'Deepak Pandey', imageUrl: Colors.red);
 final User balram = User(id: 6, name: 'Balram Rathore', imageUrl:Colors.teal);
 final User leetcode = User(id: 7, name: 'LeetCode', imageUrl: Colors.blueGrey);
 final User digitalocean = User(id: 8, name: 'Digital Ocean', imageUrl: Colors.deepPurpleAccent);
+final User digitalocean1 = User(id: 9, name: 'Digital Ocean', imageUrl: Colors.greenAccent);
+final User digitalocean2 = User(id: 10, name: 'Digital Ocean', imageUrl: Colors.lightBlue);
+final User digitalocean3 = User(id: 11, name: 'Digital Ocean', imageUrl: Colors.amber);
+final User digitalocean4 = User(id: 12, name: 'Digital Ocean', imageUrl: Colors.pink[700]);
 
 //Chats on Mail Screen
 
@@ -88,6 +92,38 @@ List<Message> mails = [
   ),
   Message(
     sender: digitalocean,
+    time: 'Feb 10',
+    text: 'Get your Dev Badge at Hacktoberfest ,just by login into the Dev Website ',
+    subject: 'Dev Badge @Hacktoberfest',
+    isStarred: false,
+    unread: true,
+  ),
+  Message(
+    sender: digitalocean1,
+    time: 'Feb 10',
+    text: 'Get your Dev Badge at Hacktoberfest ,just by login into the Dev Website ',
+    subject: 'Dev Badge @Hacktoberfest',
+    isStarred: false,
+    unread: true,
+  ),
+  Message(
+    sender: digitalocean2,
+    time: 'Feb 10',
+    text: 'Get your Dev Badge at Hacktoberfest ,just by login into the Dev Website ',
+    subject: 'Dev Badge @Hacktoberfest',
+    isStarred: false,
+    unread: true,
+  ),
+  Message(
+    sender: digitalocean3,
+    time: 'Feb 10',
+    text: 'Get your Dev Badge at Hacktoberfest ,just by login into the Dev Website ',
+    subject: 'Dev Badge @Hacktoberfest',
+    isStarred: false,
+    unread: true,
+  ),
+  Message(
+    sender: digitalocean4,
     time: 'Feb 10',
     text: 'Get your Dev Badge at Hacktoberfest ,just by login into the Dev Website ',
     subject: 'Dev Badge @Hacktoberfest',

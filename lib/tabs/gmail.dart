@@ -23,6 +23,7 @@ class Gmail extends StatefulWidget {
 }
 
 class _GmailState extends State<Gmail> {
+      bool _hasBeenPressed = false;
   @override
   Widget build(BuildContext context) {
     final firstString =
@@ -31,7 +32,6 @@ class _GmailState extends State<Gmail> {
         'Enim sed faucibus turpis in eu mi. Cras adipiscing enim eu turpis egestas pretium aenean pharetra magna. Mattis nunc sed blandit libero volutpat sed cras ornare arcu. Mauris pellentesque pulvinar pellentesque habitant morbi tristique. Scelerisque in dictum non consectetur a erat. ';
     final longString = firstString + "\n\n\n" + secondString;
     Color x = Colors.black;
-    bool _hasBeenPressed = false;
     return Scaffold(
       // backgroundColor: Colors.black,
       appBar: AppBar(

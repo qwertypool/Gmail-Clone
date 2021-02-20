@@ -1,7 +1,7 @@
 // Copyright 2019 The Flutter Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
-import 'package:responsive_flutter/responsive_flutter.dart';
+// import 'package:responsive_flutter/responsive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:demo3/models/user_model.dart';
 // import 'package:demo3/models/message_model.dart';
