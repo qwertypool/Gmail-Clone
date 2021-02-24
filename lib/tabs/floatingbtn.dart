@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:demo3/tabs/gmail.dart';
+// import 'package:demo3/tabs/gmail.dart';
+import 'package:demo3/tabs/compose.dart';
 
 class FloatingActionButtons extends StatefulWidget {
   FloatingActionButtons({Key key}) : super(key: key);
@@ -12,7 +13,7 @@ class _FloatingActionButtonsState extends State<FloatingActionButtons> {
     return FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (builder) => Gmail()));
+              context, MaterialPageRoute(builder: (builder) => Compose()));
         },  
       label: Text('Compose'),
       icon: Icon(Icons.edit),

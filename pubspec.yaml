@@ -80,6 +80,10 @@ flutter:
     - family: LexendMega
       fonts:
         - asset: fonts/LexendMega-Regular.ttf
+    - family: Roboto
+      fonts:
+      #  - asset: fonts/Roboto-Light.ttf
+        - asset: fonts/Roboto-Regular.ttf
           
   #       - asset: fonts/TrajanPro_Bold.ttf
           weight: 700
