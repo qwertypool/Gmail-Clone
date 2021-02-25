@@ -8,14 +8,15 @@ class Compose extends StatefulWidget {
 }
 
 class _ComposeState extends State<Compose> {
- 
   var _mails = [
     'deepapandey364@gmail.com',
     'pandeydeepak821@gmail.com',
-    'deepa.pandey64@gmail.com',
+    'suvam.pandey10@gmail.com',
     'balram@gmail.com',
-    'deepa.pandey@tcs.com'
+    'deepa.pandey@tcs.com',
+    'pandeydeepa@diagoe.com'
   ];
+  bool isClicked = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,45 +50,185 @@ class _ComposeState extends State<Compose> {
         elevation: 0,
       ),
       body: Column(
-        //mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
-            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: EdgeInsets.fromLTRB(20, 20, 60, 20),
+                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                 child: Text(
                   'From',
                   style: TextStyle(fontSize: 20, color: Colors.grey[700]),
                 ),
               ),
-              // Text(value),
               Expanded(child: drop()),
             ],
-          )
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Colors.grey[350], width: 1.0),
+              ),
+            ),
+          ),
+          Row(
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                child: Text(
+                  'To',
+                  style: TextStyle(fontSize: 20, color: Colors.grey[700]),
+                ),
+              ),
+              Expanded(
+                child: TextField(
+                  cursorHeight: 22,
+                  style: TextStyle(fontSize: 20),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.arrow_drop_down),
+                      onPressed: () {
+                        setState(() {
+                          isClicked = !isClicked;
+                        });
+                      },
+                    ),
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+              ),
+            ],
+          ),
+          isClicked?Column(
+            children: [
+              Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Colors.grey[350], width: 1.0),
+              ),
+            ),
+          ),
+              Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                    child: Text(
+                      'Cc',
+                      style: TextStyle(fontSize: 20, color: Colors.grey[700]),
+                    ),
+                  ),
+                  Expanded(
+                    child: TextField(
+                      cursorHeight: 22,
+                      style: TextStyle(fontSize: 20),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Colors.grey[350], width: 1.0),
+              ),
+            ),
+          ),
+              Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                    child: Text(
+                      'Bcc',
+                      style: TextStyle(fontSize: 20, color: Colors.grey[700]),
+                    ),
+                  ),
+                  Expanded(
+                    child: TextField(
+                      cursorHeight: 22,
+                      style: TextStyle(fontSize: 20),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Colors.grey[350], width: 1.0),
+              ),
+            ),
+          ),
+            ],
+          ):Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Colors.grey[350], width: 1.0),
+              ),
+            ),
+          ),
+          Row(children: [
+            Expanded(child: TextField(
+              cursorHeight: 22,
+              style: TextStyle(fontSize: 20),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "Subject",
+                hintStyle: TextStyle(fontSize: 20,color: Colors.grey[700]),
+                contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20)),
+                ),
+                )
+          ],),
+          Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Colors.grey[350], width: 1.0),
+              ),
+            ),
+          ),
+          Row(
+            children: [
+            Expanded(child: TextField(
+              cursorHeight: 24,
+              style: TextStyle(fontSize: 20),
+              decoration: InputDecoration(
+              hintText: "Compose email",
+              border: InputBorder.none,
+              hintStyle: TextStyle(fontSize: 20, color: Colors.grey[700]),
+              contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20)),
+              ),
+              )
+          ],),
         ],
       ),
     );
   }
- String value;
+
+  String value = "deepapandey364@gmail.com";
   Widget drop() {
-    return new DropdownButton(
-      isExpanded: true,
-      value:value ,
-      style: TextStyle(fontSize: 18,color: Colors.grey[700]),
-      items: _mails.map((value) {
-        return new DropdownMenuItem(
-          value: value,
-          child: new Text(value),
-        );
-      }).toList(),
-      
-      onChanged: (newValue) {
-        setState(() {
-          value = newValue;
-        });
-        print(value);
-      },
+    return DropdownButtonHideUnderline(
+      child: new DropdownButton(
+        isExpanded: true,
+        value: value,
+        style: TextStyle(fontSize: 18, color: Colors.grey[700]),
+        items: _mails.map((value) {
+          return new DropdownMenuItem(
+            value: value,
+            child: new Text(value),
+          );
+        }).toList(),
+        onChanged: (newValue) {
+          setState(() {
+            value = newValue;
+          });
+          print(value);
+        },
+      ),
     );
   }
 }
