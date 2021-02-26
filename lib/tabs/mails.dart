@@ -40,12 +40,12 @@ class _MailsState extends State<Mails> {
                     child: Text(
                       mails[index - 1].sender.name[0],
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 28,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
-                    radius: 26.0,
+                    radius: 24.0,
                   ),
                   SizedBox(
                     width: 15.0,
@@ -114,12 +114,22 @@ class _MailsState extends State<Mails> {
                 SizedBox(
                   height: 7.0,
                 ),
-                mails[index - 1].isStarred
-                    ? Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      )
-                    : Icon(Icons.star_border_outlined),
+            IconButton(
+                      constraints: BoxConstraints(),
+                      icon: mails[index - 1].isStarred
+                          ? Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                            )
+                          : Icon(Icons.star_border_outlined),
+                      iconSize: 30.0,
+                      tooltip: 'Star message',
+                      onPressed: ()=> {
+                        setState(() => {
+                           mails[index - 1].isStarred = !mails[index - 1].isStarred,
+                        }),
+                      },
+                    ),
               ],
             )
           ],
@@ -136,12 +146,3 @@ class _MailsState extends State<Mails> {
   }
 }
 
-// Expanded(
-//            child : Container(
-//               child: Column(
-//                 children: [
-//
-//                 ],
-//               ),
-//            ),
-//           )

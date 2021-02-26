@@ -5,7 +5,7 @@ class Message {
   final String time;
   final String text;
   final String subject;
-  final bool isStarred;
+  bool isStarred;
   final bool unread;
   Message({
     this.sender,
@@ -39,7 +39,7 @@ List<Message> mails = [
     time: '10:30 PM',
     text: 'View jobs in Bengaluru, Karnataka, India, match your preferences',
     subject: '11 new jobs for "Full Stack Engineers" ',
-    isStarred: true,
+    isStarred: false,
     unread: true,
   ),
   Message(
@@ -71,7 +71,7 @@ List<Message> mails = [
     time: 'Feb 12',
     text: 'Check the modified PDF attached & send feedback',
     subject: 'PDF attached',
-    isStarred: true,
+    isStarred: false,
     unread: false,
   ),
   Message(
@@ -79,7 +79,7 @@ List<Message> mails = [
     time: 'Feb 12',
     text: 'Ive created the collab repo, shall we start making the project?',
     subject: 'Invitation to github collaborator',
-    isStarred: true,
+    isStarred: false,
     unread: false,
   ),
   Message(
@@ -87,7 +87,7 @@ List<Message> mails = [
     time: 'Feb 11',
     text: 'Hello!🎉 Congratulations to our 1st leetcodes Pick winner',
     subject: 'Leetcode Weekly Digest',
-    isStarred: true,
+    isStarred: false,
     unread: true,
   ),
   Message(

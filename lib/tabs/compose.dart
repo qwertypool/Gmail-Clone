@@ -28,7 +28,7 @@ class _ComposeState extends State<Compose> {
         title: Text(
           'Compose',
           style: TextStyle(
-              color: Colors.black, fontSize: 20, fontFamily: "Roboto"),
+              color: Colors.black, fontSize: 18, fontFamily: "Roboto"),
         ),
         actions: [
           IconButton(
@@ -57,7 +57,7 @@ class _ComposeState extends State<Compose> {
                 padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                 child: Text(
                   'From',
-                  style: TextStyle(fontSize: 20, color: Colors.grey[700]),
+                  style: TextStyle(fontSize: 18, color: Colors.grey[700]),
                 ),
               ),
               Expanded(child: drop()),
@@ -76,13 +76,13 @@ class _ComposeState extends State<Compose> {
                 padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                 child: Text(
                   'To',
-                  style: TextStyle(fontSize: 20, color: Colors.grey[700]),
+                  style: TextStyle(fontSize: 18, color: Colors.grey[700]),
                 ),
               ),
               Expanded(
                 child: TextField(
                   cursorHeight: 22,
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 18),
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     suffixIcon: IconButton(
@@ -94,7 +94,7 @@ class _ComposeState extends State<Compose> {
                       },
                     ),
                   ),
-                  keyboardType: TextInputType.emailAddress,
+                  keyboardType: TextInputType.text,
                 ),
               ),
             ],
@@ -114,17 +114,17 @@ class _ComposeState extends State<Compose> {
                     padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                     child: Text(
                       'Cc',
-                      style: TextStyle(fontSize: 20, color: Colors.grey[700]),
+                      style: TextStyle(fontSize: 18, color: Colors.grey[700]),
                     ),
                   ),
                   Expanded(
                     child: TextField(
                       cursorHeight: 22,
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 18),
                       decoration: InputDecoration(
                         border: InputBorder.none,
                       ),
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.text,
                     ),
                   ),
                 ],
@@ -142,13 +142,13 @@ class _ComposeState extends State<Compose> {
                     padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                     child: Text(
                       'Bcc',
-                      style: TextStyle(fontSize: 20, color: Colors.grey[700]),
+                      style: TextStyle(fontSize: 18, color: Colors.grey[700]),
                     ),
                   ),
                   Expanded(
                     child: TextField(
                       cursorHeight: 22,
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 18),
                       decoration: InputDecoration(
                         border: InputBorder.none,
                       ),
@@ -175,12 +175,13 @@ class _ComposeState extends State<Compose> {
           Row(children: [
             Expanded(child: TextField(
               cursorHeight: 22,
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 18),
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: "Subject",
-                hintStyle: TextStyle(fontSize: 20,color: Colors.grey[700]),
+                hintStyle: TextStyle(fontSize: 18,color: Colors.grey[700]),
                 contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20)),
+                 keyboardType: TextInputType.text,
                 ),
                 )
           ],),
@@ -195,12 +196,13 @@ class _ComposeState extends State<Compose> {
             children: [
             Expanded(child: TextField(
               cursorHeight: 24,
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 18),
               decoration: InputDecoration(
               hintText: "Compose email",
               border: InputBorder.none,
-              hintStyle: TextStyle(fontSize: 20, color: Colors.grey[700]),
+              hintStyle: TextStyle(fontSize: 18, color: Colors.grey[700]),
               contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20)),
+              keyboardType: TextInputType.text,
               ),
               )
           ],),

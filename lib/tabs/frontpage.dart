@@ -22,7 +22,7 @@ class _FrontPageState extends State<FrontPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawers(),
-      appBar: Appbars(),
+      appBar: Appbars(index:_currentIndex),
       floatingActionButton: FloatingActionButtons(),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

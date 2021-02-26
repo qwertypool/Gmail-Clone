@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:demo3/models/user_model.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +8,7 @@ class Gmail extends StatefulWidget {
   final String time;
   final String text;
   final String subject;
-  final bool isstarred;
+  bool isstarred;
 
   Gmail(
       {this.user,
@@ -137,18 +136,12 @@ class _GmailState extends State<Gmail> {
                               color: Colors.yellow,
                             )
                           : Icon(Icons.star_border_outlined),
-
-                      // color: _hasBeenPressed ? Colors.purple : Colors.black,
-                      //color: x,
                       iconSize: 30.0,
                       tooltip: 'Star message',
                       onPressed: ()=> {
                         setState(() => {
                           _hasBeenPressed = !_hasBeenPressed,
-                          print(_hasBeenPressed),
-                          // x = Colors.yellow;
                         }),
-                        // _onBtnClicked();
                       },
                     ),
                   ])
