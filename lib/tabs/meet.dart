@@ -68,7 +68,6 @@ class _MeetState extends State<Meet> {
             height: 200,
             width: 200,
             decoration: BoxDecoration(
-              //backgroundBlendMode:BlendMode.darken,
               image:DecorationImage(
                 image:AssetImage('assets/google_meet.jpg'),
                 fit: BoxFit.fill,
@@ -80,7 +79,7 @@ class _MeetState extends State<Meet> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Get a link you can share"),
+                Text("Get a link you can share",style: TextStyle(fontWeight: FontWeight.bold),),
                 Text("Tap New meeting ")
 
             ],)
