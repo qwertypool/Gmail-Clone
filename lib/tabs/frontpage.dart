@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-//import 'package:demo3/tabs/gmail.dart';
 import 'package:demo3/tabs/mails.dart';
 import 'package:demo3/tabs/meet.dart';
 import 'package:demo3/tabs/drawer.dart';
 import 'package:demo3/tabs/appbar.dart';
 import 'package:demo3/tabs/floatingbtn.dart';
+import 'package:flutter/rendering.dart';
 
 class FrontPage extends StatefulWidget {
   const FrontPage({Key key}) : super(key: key);
@@ -23,7 +23,7 @@ class _FrontPageState extends State<FrontPage> {
     return Scaffold(
       drawer: Drawers(),
       appBar: Appbars(index:_currentIndex),
-      floatingActionButton: FloatingActionButtons(),
+      //floatingActionButton: _currentIndex==0?FloatingActionButtons():null,
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
       fixedColor: Colors.red,

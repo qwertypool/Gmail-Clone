@@ -14,20 +14,6 @@ class _DrawersState extends State<Drawers> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          // DrawerHeader(
-          //   margin: EdgeInsets.only(bottom: 0.0),
-          //   padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
-            
-          //   child: Text(
-          //     'Gmail Clone',
-          //     style: TextStyle(
-          //       color: Colors.red,
-          //       //fontFamily: 'LexendMega',
-          //       fontFamily: 'Cinzel',
-          //       fontSize: 22.0,
-          //     ),
-          //   ),
-          // ),
           Container(
           padding: const EdgeInsets.fromLTRB(20, 50, 0, 10),
           width: MediaQuery.of(context).size.width * 0.45,

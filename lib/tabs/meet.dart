@@ -15,11 +15,12 @@ class _MeetState extends State<Meet> {
         width: MediaQuery.of(context).size.width,
         color: Colors.white,
         child: Column(
+          
           children: [
+            SizedBox(height: 15,),
             Row(
-              
               children: [
-                SizedBox(width:15),
+                SizedBox(width:15,),
               Expanded(
                 child: FlatButton(
                 padding: EdgeInsets.all(4),
@@ -79,8 +80,19 @@ class _MeetState extends State<Meet> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Get a link you can share",style: TextStyle(fontWeight: FontWeight.bold),),
-                Text("Tap New meeting ")
+                Container(
+                  width: 200,
+                  child: Text("Get a link you can share",
+                  style: TextStyle(fontWeight: FontWeight.w500,fontSize: 25.0),
+                  textAlign: TextAlign.center,)
+                  ),
+                  SizedBox(height: 8,),
+                Container(
+                  width: 250,
+                  child: Text("Tap New meeting to get a link you can send to people you want to meet with",
+                  style: TextStyle(color: Colors.grey[700],fontSize: 15.0),
+                  textAlign: TextAlign.center,)
+                  )
 
             ],)
           ],
