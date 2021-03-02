@@ -63,6 +63,7 @@ class _MeetState extends State<Meet> {
               SizedBox(width:15),
             ],
             ),
+        
             Container(
             margin: EdgeInsets.only(top: 100.0),
             alignment:Alignment.center,
@@ -75,7 +76,6 @@ class _MeetState extends State<Meet> {
                  ),
                  shape: BoxShape.circle,
                  ) ,
-                 //child: Text(""),
               ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -93,8 +93,9 @@ class _MeetState extends State<Meet> {
                   style: TextStyle(color: Colors.grey[700],fontSize: 15.0),
                   textAlign: TextAlign.center,)
                   )
-
-            ],)
+                  ],
+            ),
+            
           ],
           
         ),
