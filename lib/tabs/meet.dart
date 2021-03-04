@@ -229,7 +229,7 @@ class BottomSheetContent extends StatelessWidget {
               itemCount: 1,
               itemBuilder: (context, index) {
                 return Column(
-                  children: const <Widget>[
+                  children: [
                     ListTile(
                       leading: const Icon(
                         Icons.link,
@@ -239,6 +239,9 @@ class BottomSheetContent extends StatelessWidget {
                         'Get a meeting link to share',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
+                      onTap: () {
+                        showAlertDialog(context);
+                      },
                     ),
                     ListTile(
                       leading: const Icon(
@@ -274,4 +277,40 @@ class BottomSheetContent extends StatelessWidget {
       ),
     );
   }
+  showAlertDialog(BuildContext context) {
+  // set up the button
+  Widget okButton = (
+
+    FlatButton.icon(onPressed: (){},
+     icon: Icon(Icons.share),
+     minWidth: 40,
+      label: Text('Share'),
+      color: Colors.blue,
+      shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10.0),
+      side: BorderSide(color: Colors.blue)),
+      )
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Here's the link to your meeting"),
+    content: Text("Copy this link and send it to people you want to meet with. Be sure to save it so you can use it later, too."),
+    actions: [
+      okButton,
+    ],
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(15.0))),
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
+}
+
+

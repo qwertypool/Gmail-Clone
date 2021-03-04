@@ -38,17 +38,30 @@ class _JoinState extends State<Join> {
       ),
       body: Container(
         color: Colors.white,
-        padding: const EdgeInsets.all(10.0),
+        //padding: const EdgeInsets.all(2.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Align(
                 alignment: Alignment.topRight,
-                child: Text(
-                  'Join ',
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: clicked == true ? Colors.blue : Colors.grey[400]),
+                child: InkWell(
+                  child: Container(
+                    width: 50,
+                    height: 25,
+                    //color: Colors.blue,
+                    child: Text(
+                      'Join ',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: clicked == true
+                              ? Colors.blue[800]
+                              : Colors.grey[400]),
+                    ),
+                  ),
+                  onTap: () {
+                    showAlertDialog(context);
+                  },
                 )),
             SizedBox(height: 20),
             Text(
@@ -63,19 +76,48 @@ class _JoinState extends State<Join> {
                     fillColor: Colors.grey[200],
                     filled: true,
                     hintText: 'Example: abc-mnop-xyz',
-                    
                     hintStyle:
                         TextStyle(color: Colors.grey[600], fontSize: 18)),
                 controller: _controller,
                 onTap: () {
-                   clicked = true;
+                  clicked = true;
                 },
                 onChanged: (String value) async {
                   clicked = true;
+                  print("First text field:$value");
                 }),
           ],
         ),
       ),
+    );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // set up the button
+    Widget okButton = FlatButton(
+      child: Text("Dismiss"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      //title: Text("My title"),
+      content: Text("No such meeting"),
+      actions: [
+        okButton,
+      ],
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(15.0))),
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }
