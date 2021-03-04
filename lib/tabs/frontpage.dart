@@ -3,7 +3,6 @@ import 'package:demo3/tabs/mails.dart';
 import 'package:demo3/tabs/meet.dart';
 import 'package:demo3/tabs/drawer.dart';
 import 'package:demo3/tabs/appbar.dart';
-import 'package:demo3/tabs/floatingbtn.dart';
 import 'package:flutter/rendering.dart';
 
 class FrontPage extends StatefulWidget {
