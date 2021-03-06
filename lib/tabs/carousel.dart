@@ -9,6 +9,7 @@ class Join extends StatefulWidget {
 
 class _JoinState extends State<Join> {
   bool clicked = false;
+  String text = '';
 
   TextEditingController _controller;
 
@@ -54,12 +55,15 @@ class _JoinState extends State<Join> {
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: clicked == true
-                              ? Colors.blue[800]
-                              : Colors.grey[400]),
+                          color: Colors.blue[800],
+                          // color: clicked == true
+                          //     ? Colors.blue[800]
+                          //     : Colors.grey[400]
+                          ),
                     ),
                   ),
                   onTap: () {
+                    clicked = true;
                     showAlertDialog(context);
                   },
                 )),
@@ -84,7 +88,8 @@ class _JoinState extends State<Join> {
                 },
                 onChanged: (String value) async {
                   clicked = true;
-                  print("First text field:$value");
+                  text = value;
+                  //print("First text field:$value");
                 }),
           ],
         ),

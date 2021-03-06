@@ -33,7 +33,9 @@ dependencies:
   cupertino_icons: ^0.1.3 
   responsive_flutter: ^0.0.4
   carousel_slider: ^3.0.0
-  
+  share: ^0.6.5+4
+  image_picker:
+  clipboard_manager: ^0.0.4
 
 dev_dependencies:
   flutter_test:

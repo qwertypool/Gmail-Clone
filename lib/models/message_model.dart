@@ -20,7 +20,7 @@ class Message {
 final User currentUser =User(id: 0, name: 'Deepa Pandey', imageUrl: Colors.red);
 final User linkedln = User(id: 1, name: 'Linkedln', imageUrl: Colors.orange);
 final User sugar = User(id: 2, name: 'Sugar Cosmetics', imageUrl: Colors.grey);
-final User medium = User(id: 3, name: 'Medium Daily Digest', imageUrl: Colors.pink[900]);
+final User medium = User(id: 3, name: 'Medium Daily', imageUrl: Colors.pink[900]);
 final User amazon = User(id: 4, name: 'Amazon.in', imageUrl: Colors.yellow);
 final User deepak = User(id: 5, name: 'Deepak Pandey', imageUrl: Colors.red);
 final User balram = User(id: 6, name: 'Balram Rathore', imageUrl:Colors.teal);

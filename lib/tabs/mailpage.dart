@@ -3,6 +3,7 @@ import 'package:demo3/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class Gmail extends StatefulWidget {
+  
   final User user;
   final Color image;
   final String time;
@@ -22,13 +23,23 @@ class Gmail extends StatefulWidget {
 }
 
 class _GmailState extends State<Gmail> {
-      bool _hasBeenPressed = false;
+  bool _hasBeenPressed = false;
+  GlobalKey _keyText = GlobalKey();
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
+    super.initState();
+  }
+ _afterLayout(_) {
+    _getSizes();
+    //_getPositions();
+  }
   @override
   Widget build(BuildContext context) {
-    //final firstString =
-        //'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam faucibus purus in massa. Enim lobortis scelerisque fermentum dui. Egestas quis ipsum suspendisse ultrices gravida dictum. Porttitor lacus luctus accumsan tortor. Rhoncus est pellentesque elit ullamcorper dignissim cras. Duis tristique sollicitudin nibh sit amet. Diam donec adipiscing tristique risus nec feugiat in. Ornare arcu dui vivamus arcu. Sagittis vitae et leo duis ut diam quam nulla porttitor. Faucibus pulvinar elementum integer enim neque volutpat ac. Sapien et ligula ullamcorper malesuada.';
-    final secondString =
-        'Enim sed faucibus turpis in eu mi. Cras adipiscing enim eu turpis egestas pretium aenean pharetra magna. Mattis nunc sed blandit libero volutpat sed cras ornare arcu. Mauris pellentesque pulvinar pellentesque habitant morbi tristique. Scelerisque in dictum non consectetur a erat. ';
+    final firstString =
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam faucibus purus in massa. Enim lobortis scelerisque fermentum dui. Egestas quis ipsum suspendisse ultrices gravida dictum. Porttitor lacus luctus accumsan tortor. Rhoncus est pellentesque elit ullamcorper dignissim cras. Duis tristique sollicitudin nibh sit amet. Diam donec adipiscing tristique risus nec feugiat in. Ornare arcu dui vivamus arcu. Sagittis vitae et leo duis ut diam quam nulla porttitor. Faucibus pulvinar elementum integer enim neque volutpat ac. Sapien et ligula ullamcorper malesuada.';
+    //final secondString =
+    //'Enim sed faucibus turpis in eu mi. Cras adipiscing enim eu turpis egestas pretium aenean pharetra magna. Mattis nunc sed blandit libero volutpat sed cras ornare arcu. Mauris pellentesque pulvinar pellentesque habitant morbi tristique. Scelerisque in dictum non consectetur a erat. ';
     //final longString = firstString + "\n\n\n" + secondString;
     //Color x = Colors.black;
     return Scaffold(
@@ -87,47 +98,41 @@ class _GmailState extends State<Gmail> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(12.0),
           child: Column(
             children: [
               //subject part
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    // mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        height: 50,
-                        child: Text(
-                          widget.subject,
-                          maxLines: 3,
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.black,
-                          ),
-                        ),
+                  Container(
+                    key :_keyText,
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    height: 70,
+                    child: Text(
+                      widget.subject,
+                      maxLines: 3,
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.black,
                       ),
-                      // SizedBox(
-                      //   width: 4.0,
-                      // ),
-                      Container(
-                        color: Colors.grey[300],
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(4, 2, 4, 2),
-                          child: Text(
-                            'Inbox',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12.0,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
+                    ),
                   ),
+                 
                   Row(children: [
+                  Container(
+                    color: Colors.grey[300],
+                    child: Padding(
+                    padding: EdgeInsets.fromLTRB(4, 2, 4, 2),
+                    child: Text(
+                      'Inbox',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 12.0,
+                      ),
+                    ),
+                  ),
+                    ),
                     IconButton(
                       constraints: BoxConstraints(),
                       icon: _hasBeenPressed
@@ -138,10 +143,10 @@ class _GmailState extends State<Gmail> {
                           : Icon(Icons.star_border_outlined),
                       iconSize: 30.0,
                       tooltip: 'Star message',
-                      onPressed: ()=> {
+                      onPressed: () => {
                         setState(() => {
-                          _hasBeenPressed = !_hasBeenPressed,
-                        }),
+                              _hasBeenPressed = !_hasBeenPressed,
+                            }),
                       },
                     ),
                   ])
@@ -178,22 +183,27 @@ class _GmailState extends State<Gmail> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            widget.user.name,
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 20.0),
-                          ),
-                          SizedBox(
-                            width: 8.0,
-                          ),
-                          Text(
-                            widget.time,
-                            style: TextStyle(
-                                color: Colors.grey[800], fontSize: 11.0),
-                          )
-                        ],
+                      Container(
+                        //width: MediaQuery.of(context).size.width * 0.3,
+                        //height: 30,
+                        child: Row(
+                          children: [
+                            Text(
+                              widget.user.name,
+                              maxLines: 3,
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 20.0),
+                            ),
+                            SizedBox(
+                              width: 8.0,
+                            ),
+                            Text(
+                              widget.time,
+                              style: TextStyle(
+                                  color: Colors.grey[800], fontSize: 11.0),
+                            )
+                          ],
+                        ),
                       ),
                       Row(
                         children: [
@@ -223,23 +233,21 @@ class _GmailState extends State<Gmail> {
                 children: [
                   Row(
                     children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(10, 0, 2, 15),
-                        height: 300,
-                        width: 300,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage('assets/liner.jpg'),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: BoxShape.circle),
-                      ),
+                      // Container(
+                      //   margin: EdgeInsets.fromLTRB(10, 0, 2, 15),
+                      //   height: 300,
+                      //   width: 300,
+                      //   decoration: BoxDecoration(
+                      //       image: DecorationImage(
+                      //         image: AssetImage('assets/liner.jpg'),
+                      //         fit: BoxFit.fill,
+                      //       ),
+                      //       shape: BoxShape.circle),
+                      // ),
                     ],
                   ),
                   Container(
                     padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
-                    // height: 1000,
-                    // color: Colors.pink[50],
                     child: Text(
                       widget.text,
                       style: TextStyle(
@@ -249,24 +257,24 @@ class _GmailState extends State<Gmail> {
                     ),
                   ),
                   SizedBox(height: 50),
-                  Container(
-                    height: 150,
-                    width: 350,
-                    margin: EdgeInsets.only(top: 12, bottom: 8),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/sugar.png'),
-                          fit: BoxFit.fitWidth),
-                      shape: BoxShape.rectangle,
-                    ),
-                  ),
-                  SizedBox(height: 10),
+                  // Container(
+                  //   height: 150,
+                  //   width: 350,
+                  //   margin: EdgeInsets.only(top: 12, bottom: 8),
+                  //   decoration: BoxDecoration(
+                  //     image: DecorationImage(
+                  //         image: AssetImage('assets/sugar.png'),
+                  //         fit: BoxFit.fitWidth),
+                  //     shape: BoxShape.rectangle,
+                  //   ),
+                  // ),
+                  //SizedBox(height: 10),
                   Container(
                     padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
                     // height: 1000,
                     color: Colors.pink[50],
                     child: Text(
-                      secondString,
+                      firstString,
                       style: TextStyle(
                         fontSize: 15.0,
                         letterSpacing: 2.0,
@@ -281,52 +289,35 @@ class _GmailState extends State<Gmail> {
       ),
 
       bottomNavigationBar: BottomAppBar(
-        //color: Colors.black,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            button(Icons.reply, "Reply"),
-            button(Icons.reply_all, "Reply All"),
-            button(Icons.arrow_forward, "Forward"),
-          ],
-        ),
-      ),
-    );
-  }
-
-  
-  Widget button(IconData icon, String text) {
-    return InkWell(
-      onTap: () {
-        print("hello deepa babe");
-      },
-      splashColor: Colors.black,
-      child: Container(
-        width: 120,
-        height: 40,
-        child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          elevation: 8,
-          color: Colors.white60,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+        child: Padding(
+                padding: EdgeInsets.only(bottom: 15),
+                  child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Icon(
-                icon,
-                size: 25,
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              Text(
-                text,
-                style: TextStyle(fontSize: 18),
-              ),
+              button(Icons.reply, "Reply"),
+              button(Icons.reply_all, "Reply All"),
+              button(Icons.arrow_forward, "Forward"),
             ],
           ),
         ),
       ),
+    );
+  }
+_getSizes() {
+    final RenderBox renderBoxRed = _keyText.currentContext.findRenderObject();
+    final sizeText = renderBoxRed.size;
+    print("SIZE of Text: $sizeText");
+ }
+  Widget button(IconData icon, String text) {
+    return SizedBox(
+          height: 46,
+          child: OutlineButton.icon(
+          onPressed: () {},
+          icon: Icon(icon),
+          label: Text((text),
+          style:TextStyle(color:Colors.grey[800])),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),side: BorderSide(color:Colors.grey[400])),
+          ),
     );
   }
 }

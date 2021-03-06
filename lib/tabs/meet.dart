@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:demo3/tabs/carousel.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:share/share.dart';
+import 'package:clipboard_manager/clipboard_manager.dart';
 
 class Meet extends StatefulWidget {
   Meet({Key key}) : super(key: key);
   //CarouselController buttonCarouselController = CarouselController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   _MeetState createState() => _MeetState();
@@ -28,6 +32,7 @@ class _MeetState extends State<Meet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -230,18 +235,24 @@ class BottomSheetContent extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    ListTile(
-                      leading: const Icon(
-                        Icons.link,
-                        color: Colors.black,
-                      ),
-                      title: Text(
-                        'Get a meeting link to share',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      onTap: () {
-                        showAlertDialog(context);
-                      },
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ListTile(
+                          leading: const Icon(
+                            Icons.link,
+                            color: Colors.black,
+                          ),
+                          title: Text(
+                            'Get a meeting link to share',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          
+                          onTap: () {
+                            showAlertDialog(context);
+                          },
+                        ),
+                      ],
                     ),
                     ListTile(
                       leading: const Icon(
@@ -277,40 +288,81 @@ class BottomSheetContent extends StatelessWidget {
       ),
     );
   }
-  showAlertDialog(BuildContext context) {
-  // set up the button
-  Widget okButton = (
 
-    FlatButton.icon(onPressed: (){},
-     icon: Icon(Icons.share),
-     minWidth: 40,
+  String link = "https://meet.google.com/vgt-maqh-dvv";
+ // String link = "https://";
+  showAlertDialog(BuildContext context) {
+    // set up the button
+    Widget shareBtn = (
+      
+      FlatButton.icon(
+      onPressed: () {
+        _onShareData(context);
+      },
+      icon: Icon(Icons.share),
+      minWidth: 20,
       label: Text('Share'),
       color: Colors.blue,
       shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10.0),
-      side: BorderSide(color: Colors.blue)),
-      )
-  );
+          borderRadius: BorderRadius.circular(10.0),
+          side: BorderSide(color: Colors.blue)),
+    ));
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      contentPadding:EdgeInsets.fromLTRB(24, 20, 24, 2),
+      title: Text("Here's the link to your meeting"),
+      content: Column(
+        children: [
+          Text(
+              "Copy this link and send it to people you want to meet with. Be sure to save it so you can use it later, too."),
+          Text(
+            link,
+            maxLines: 3,
+            style: TextStyle(
+              backgroundColor: Colors.grey[300],
+            ),
+          ),
+          IconButton(
+                icon: Icon(Icons.copy),
+                onPressed: () {
+                  print("pressed");
+                  ClipboardManager.copyToClipBoard(link).then((result) {
+                    final snackBar = SnackBar(
+                      content: Text('Copied to Clipboard'),
+                      action: SnackBarAction(
+                        label: 'Undo',
+                        onPressed: () {},
+                      ),
+                    );
+                      Scaffold.of(context).showSnackBar(snackBar);    
+                  });
+                },
+              ),
+        ],
+      ),
+      actions: [
+        shareBtn,
+      ],
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(15.0))),
+    );
+    
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
-  // set up the AlertDialog
-  AlertDialog alert = AlertDialog(
-    title: Text("Here's the link to your meeting"),
-    content: Text("Copy this link and send it to people you want to meet with. Be sure to save it so you can use it later, too."),
-    actions: [
-      okButton,
-    ],
-    shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(15.0))),
-  );
-
-  // show the dialog
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
+  _onShareData(BuildContext context) async {
+    //final RenderBox box = context.findRenderObject();
+    {
+      await Share.share(link,
+          // subject: ,
+         // sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size
+          );
+    }
+  }
 }
-}
-
-
