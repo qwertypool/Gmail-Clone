@@ -156,8 +156,8 @@ class _MailsState extends State<Mails> {
                             Icons.star,
                             color: Colors.yellow,
                           )
-                        : Icon(Icons.star_border_outlined),
-                    iconSize: 30.0,
+                        : Icon(Icons.star_border_outlined,color: Colors.grey,),
+                    iconSize: 25.0,
                     tooltip: 'Star message',
                     onPressed: () => {
                       setState(() => {
@@ -173,7 +173,6 @@ class _MailsState extends State<Mails> {
         },
       ),
       floatingActionButton: show==true? FloatingActionButton.extended(
-      
           onPressed: () {
             Navigator.push(
                 context, MaterialPageRoute(builder: (builder) => Compose()));
@@ -197,7 +196,6 @@ class _MailsState extends State<Mails> {
 
   Color generateRandomColor() {
     Random random = Random();
-
     return Color.fromARGB(
         255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
   }

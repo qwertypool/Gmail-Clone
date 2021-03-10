@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:demo3/tabs/carousel.dart';
+import 'package:demo3/tabs/join_meet.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:share/share.dart';
 import 'package:clipboard_manager/clipboard_manager.dart';
 
 class Meet extends StatefulWidget {
   Meet({Key key}) : super(key: key);
-  //CarouselController buttonCarouselController = CarouselController();
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
   @override
   _MeetState createState() => _MeetState();
 }

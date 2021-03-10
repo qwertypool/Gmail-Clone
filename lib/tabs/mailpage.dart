@@ -1,9 +1,11 @@
 import 'dart:ui';
 import 'package:demo3/models/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:demo3/tabs/reply.dart';
+// import 'package:demo3/tabs/forward.dart';
 
+// import 'package:demo3/tabs/reply_all.dart';
 class Gmail extends StatefulWidget {
-  
   final User user;
   final Color image;
   final String time;
@@ -30,10 +32,12 @@ class _GmailState extends State<Gmail> {
     WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
     super.initState();
   }
- _afterLayout(_) {
+
+  _afterLayout(_) {
     _getSizes();
     //_getPositions();
   }
+
   @override
   Widget build(BuildContext context) {
     final firstString =
@@ -106,7 +110,7 @@ class _GmailState extends State<Gmail> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    key :_keyText,
+                    key: _keyText,
                     width: MediaQuery.of(context).size.width * 0.7,
                     height: 70,
                     child: Text(
@@ -118,20 +122,19 @@ class _GmailState extends State<Gmail> {
                       ),
                     ),
                   ),
-                 
                   Row(children: [
-                  Container(
-                    color: Colors.grey[300],
-                    child: Padding(
-                    padding: EdgeInsets.fromLTRB(4, 2, 4, 2),
-                    child: Text(
-                      'Inbox',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 12.0,
+                    Container(
+                      color: Colors.grey[300],
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(4, 2, 4, 2),
+                        child: Text(
+                          'Inbox',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12.0,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
                     ),
                     IconButton(
                       constraints: BoxConstraints(),
@@ -191,8 +194,8 @@ class _GmailState extends State<Gmail> {
                             Text(
                               widget.user.name,
                               maxLines: 3,
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 20.0),
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 20.0),
                             ),
                             SizedBox(
                               width: 8.0,
@@ -290,34 +293,52 @@ class _GmailState extends State<Gmail> {
 
       bottomNavigationBar: BottomAppBar(
         child: Padding(
-                padding: EdgeInsets.only(bottom: 15),
-                  child: Row(
+          padding: EdgeInsets.only(bottom: 15),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              button(Icons.reply, "Reply"),
-              button(Icons.reply_all, "Reply All"),
-              button(Icons.arrow_forward, "Forward"),
+              button(Icons.reply, "Reply",1,widget.user.name,widget.subject),
+              button(Icons.reply_all, "Reply All",2,widget.user.name,widget.subject),
+              button(Icons.arrow_forward, "Forward",3,widget.user.name,widget.subject),
             ],
           ),
         ),
       ),
     );
   }
-_getSizes() {
+
+  _getSizes() {
     final RenderBox renderBoxRed = _keyText.currentContext.findRenderObject();
     final sizeText = renderBoxRed.size;
     print("SIZE of Text: $sizeText");
- }
-  Widget button(IconData icon, String text) {
+  }
+
+  Widget button(IconData icon, String text,int index,String name,String subject) {
     return SizedBox(
-          height: 46,
-          child: OutlineButton.icon(
-          onPressed: () {},
-          icon: Icon(icon),
-          label: Text((text),
-          style:TextStyle(color:Colors.grey[800])),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5),side: BorderSide(color:Colors.grey[400])),
-          ),
+      height: 46,
+      child: OutlineButton.icon(
+        onPressed: () {
+           Navigator.push(
+              context, MaterialPageRoute(builder: (builder) => Reply(index:index,title:text,user:name,subject:subject)));
+        //   if(index==1){
+        //   Navigator.push(
+        //       context, MaterialPageRoute(builder: (builder) => Reply(index:index,title:text,user:name,subject:subject)));
+        // }
+        //  if(index==2){
+        //   Navigator.push(
+        //       context, MaterialPageRoute(builder: (builder) => Forward(user:name,subject:subject)));
+        // }
+        //  if(index==3){
+        //   Navigator.push(
+        //       context, MaterialPageRoute(builder: (builder) => Reply(user:name,subject:subject)));
+        // }
+        },
+        icon: Icon(icon),
+        label: Text((text), style: TextStyle(color: Colors.grey[800])),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+            side: BorderSide(color: Colors.grey[400])),
+      ),
     );
   }
 }
