@@ -297,9 +297,9 @@ class _GmailState extends State<Gmail> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              button(Icons.reply, "Reply",1,widget.user.name,widget.subject),
-              button(Icons.reply_all, "Reply All",2,widget.user.name,widget.subject),
-              button(Icons.arrow_forward, "Forward",3,widget.user.name,widget.subject),
+              button(Icons.reply, "Reply",1,widget.user.name,widget.subject,widget.text,widget.time),
+              button(Icons.reply_all, "Reply All",2,widget.user.name,widget.subject,widget.text,widget.time),
+              button(Icons.arrow_forward, "Forward",3,widget.user.name,widget.subject,widget.text,widget.time),
             ],
           ),
         ),
@@ -313,25 +313,13 @@ class _GmailState extends State<Gmail> {
     print("SIZE of Text: $sizeText");
   }
 
-  Widget button(IconData icon, String text,int index,String name,String subject) {
+  Widget button(IconData icon, String text,int index,String name,String subject,String msg,String time) {
     return SizedBox(
       height: 46,
       child: OutlineButton.icon(
         onPressed: () {
            Navigator.push(
-              context, MaterialPageRoute(builder: (builder) => Reply(index:index,title:text,user:name,subject:subject)));
-        //   if(index==1){
-        //   Navigator.push(
-        //       context, MaterialPageRoute(builder: (builder) => Reply(index:index,title:text,user:name,subject:subject)));
-        // }
-        //  if(index==2){
-        //   Navigator.push(
-        //       context, MaterialPageRoute(builder: (builder) => Forward(user:name,subject:subject)));
-        // }
-        //  if(index==3){
-        //   Navigator.push(
-        //       context, MaterialPageRoute(builder: (builder) => Reply(user:name,subject:subject)));
-        // }
+              context, MaterialPageRoute(builder: (builder) => Reply(index:index,title:text,user:name,subject:subject,msg:msg,time:time)));
         },
         icon: Icon(icon),
         label: Text((text), style: TextStyle(color: Colors.grey[800])),
