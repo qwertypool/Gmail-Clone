@@ -37,6 +37,7 @@ dependencies:
   image_picker:
   clipboard_manager: ^0.0.4
   file_picker: ^2.1.7
+  floating_search_bar: ^0.3.0
   
 
 dev_dependencies:

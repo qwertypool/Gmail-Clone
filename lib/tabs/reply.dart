@@ -20,6 +20,7 @@ class Reply extends StatefulWidget {
 class _ReplyState extends State<Reply> {
   //Widget text1 = Text("This is ");
   bool pressed = false;
+  File file;
   var _mails = [
     'deepapandey364@gmail.com',
     'pandeydeepak821@gmail.com',
@@ -33,7 +34,14 @@ class _ReplyState extends State<Reply> {
 
   @override
   Widget build(BuildContext context) {
-    String reply = "On Sun "+widget.time+" "+widget.user+"<"+widget.user+"-no-reply-456@gmail.com> wrote \n\n "+widget.msg;
+    String reply = "On Sun " +
+        widget.time +
+        " " +
+        widget.user +
+        "<" +
+        widget.user +
+        "-no-reply-456@gmail.com> wrote \n\n " +
+        widget.msg;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -47,7 +55,7 @@ class _ReplyState extends State<Reply> {
         ),
         actions: [
           PopupMenuButton<String>(
-            offset: Offset(50, 350),
+            offset: Offset(50, 40),
             icon: Icon(
               (Icons.attachment),
               color: Colors.grey[600],
@@ -65,16 +73,14 @@ class _ReplyState extends State<Reply> {
               ];
             },
             onSelected: (value) async {
-              if (value == '1') {
-                print("entererd here");
-                FilePickerResult result = await FilePicker.platform.pickFiles();
-                if (result != null) {
-                  File file = File(result.files.single.path);
-                  print(file);
-                  print("entererd");
-                } else {
-                  // User canceled the picker
-                }
+              //if (value == '1')
+              print("entererd here");
+              FilePickerResult result = await FilePicker.platform.pickFiles();
+              if (result != null) {
+                file = File(result.files.single.path);
+                //String  path = await FilePicker.getFilePath(type: FileType.any);
+                print(file);
+                // print("entererd");
               }
             },
           ),
@@ -83,219 +89,255 @@ class _ReplyState extends State<Reply> {
             onPressed: () {},
             color: Colors.blue[600],
           ),
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: () {},
-            color: Colors.grey[600],
-          )
+        PopupMenuButton<String>(
+            offset: Offset(0, 40),
+            icon: Icon((Icons.more_vert),
+            color: Colors.grey[600],),
+            itemBuilder: (BuildContext context) {
+              return [
+                PopupMenuItem<String>(
+                  value: '1',
+                  child: Text('Schedule Send'),
+                ),
+                PopupMenuItem<String>(
+                  value: '2',
+                  child: Text('Add from contacts'),
+                ),
+                PopupMenuItem<String>(
+                  value: '2',
+                  child: Text('Discard'),
+                ),
+                PopupMenuItem<String>(
+                  value: '2',
+                  child: Text('Save Draft'),
+                ),
+                PopupMenuItem<String>(
+                  value: '2',
+                  child: Text('Settings'),
+                ),
+                PopupMenuItem<String>(
+                  value: '2',
+                  child: Text('Help & Feedback'),
+                ),
+              ];
+            },
+            onSelected: (value) {}
+          ),
         ],
         elevation: 0,
       ),
-      body: Column(
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                child: Text(
-                  'From',
-                  style: TextStyle(fontSize: 18, color: Colors.grey[700]),
+      body: SingleChildScrollView(
+              child: Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                  child: Text(
+                    'From',
+                    style: TextStyle(fontSize: 18, color: Colors.grey[700]),
+                  ),
                 ),
-              ),
-              //Expanded(child: drop()),
-              Expanded(
-                  child: TextFormField(
-                initialValue: 'deepapandey364@gmail.com',
-                cursorHeight: 18,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                ),
-              )),
-              Container(
-                decoration: BoxDecoration(
-                    border: Border(
-                        bottom:
-                            BorderSide(color: Colors.grey[350], width: 1.0))),
-              )
-            ],
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Colors.grey[350], width: 1.0),
-              ),
-            ),
-          ),
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                child: Text(
-                  'To',
-                  style: TextStyle(fontSize: 18, color: Colors.grey[700]),
-                ),
-              ),
-              Expanded(
-                child: TextFormField(
-                  initialValue: widget.user,
-                  cursorHeight: 22,
-                  style: TextStyle(fontSize: 18),
+                //Expanded(child: drop()),
+                Expanded(
+                    child: TextFormField(
+                  initialValue: 'deepapandey364@gmail.com',
+                  cursorHeight: 18,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    suffixIcon: IconButton(
-                      icon: Icon(Icons.arrow_drop_down),
-                      onPressed: () {
-                        setState(() {
-                          isClicked = !isClicked;
-                        });
-                      },
-                    ),
                   ),
-                  keyboardType: TextInputType.text,
-                ),
-              ),
-            ],
-          ),
-          isClicked
-              ? Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom:
-                              BorderSide(color: Colors.grey[350], width: 1.0),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                          child: Text(
-                            'Cc',
-                            style: TextStyle(
-                                fontSize: 18, color: Colors.grey[700]),
-                          ),
-                        ),
-                        Expanded(
-                          child: TextField(
-                            cursorHeight: 22,
-                            style: TextStyle(fontSize: 18),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                            ),
-                            keyboardType: TextInputType.text,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom:
-                              BorderSide(color: Colors.grey[350], width: 1.0),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                          child: Text(
-                            'Bcc',
-                            style: TextStyle(
-                                fontSize: 18, color: Colors.grey[700]),
-                          ),
-                        ),
-                        Expanded(
-                          child: TextField(
-                            cursorHeight: 22,
-                            style: TextStyle(fontSize: 18),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                            ),
-                            keyboardType: TextInputType.emailAddress,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom:
-                              BorderSide(color: Colors.grey[350], width: 1.0),
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              : Container(
+                )),
+                Container(
                   decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Colors.grey[350], width: 1.0),
-                    ),
-                  ),
+                      border: Border(
+                          bottom:
+                              BorderSide(color: Colors.grey[350], width: 1.0))),
+                )
+              ],
+            ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Colors.grey[350], width: 1.0),
                 ),
-          Row(
-            children: [
-              Expanded(
-                child: TextFormField(
-                  initialValue: text(widget.index) + widget.subject,
-                  cursorHeight: 22,
-                  style: TextStyle(fontSize: 18),
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: text(widget.index),
-                      hintStyle: TextStyle(fontSize: 18, color: Colors.black),
-                      contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20)),
-                  keyboardType: TextInputType.text,
-                ),
-              )
-            ],
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Colors.grey[350], width: 1.0),
               ),
             ),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  cursorHeight: 24,
-                  style: TextStyle(fontSize: 18),
-                  decoration: InputDecoration(
-                      hintText: "Compose",
-                      border: InputBorder.none,
-                      hintStyle:
-                          TextStyle(fontSize: 18, color: Colors.grey[700]),
-                      contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20)),
-                  keyboardType: TextInputType.text,
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                  child: Text(
+                    'To',
+                    style: TextStyle(fontSize: 18, color: Colors.grey[700]),
+                  ),
                 ),
-              )
-            ],
-          ),
-          Column(children: [
-            IconButton(
-              icon: Icon(Icons.more_horiz_rounded),
-              onPressed: () {
-                setState(() {
-                  pressed = !pressed;
-                  print("pressed");
-                });
-              },
+                Expanded(
+                  child: TextFormField(
+                    initialValue: widget.user,
+                    cursorHeight: 22,
+                    style: TextStyle(fontSize: 18),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.arrow_drop_down),
+                        onPressed: () {
+                          setState(() {
+                            isClicked = !isClicked;
+                          });
+                        },
+                      ),
+                    ),
+                    keyboardType: TextInputType.text,
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: 10,
+            isClicked
+                ? Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom:
+                                BorderSide(color: Colors.grey[350], width: 1.0),
+                          ),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                            child: Text(
+                              'Cc',
+                              style: TextStyle(
+                                  fontSize: 18, color: Colors.grey[700]),
+                            ),
+                          ),
+                          Expanded(
+                            child: TextField(
+                              cursorHeight: 22,
+                              style: TextStyle(fontSize: 18),
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                              ),
+                              keyboardType: TextInputType.text,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom:
+                                BorderSide(color: Colors.grey[350], width: 1.0),
+                          ),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                            child: Text(
+                              'Bcc',
+                              style: TextStyle(
+                                  fontSize: 18, color: Colors.grey[700]),
+                            ),
+                          ),
+                          Expanded(
+                            child: TextField(
+                              cursorHeight: 22,
+                              style: TextStyle(fontSize: 18),
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                              ),
+                              keyboardType: TextInputType.emailAddress,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom:
+                                BorderSide(color: Colors.grey[350], width: 1.0),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: Colors.grey[350], width: 1.0),
+                      ),
+                    ),
+                  ),
+            Row(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    initialValue: text(widget.index) + widget.subject,
+                    cursorHeight: 22,
+                    style: TextStyle(fontSize: 18),
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: text(widget.index),
+                        hintStyle: TextStyle(fontSize: 18, color: Colors.black),
+                        contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20)),
+                    keyboardType: TextInputType.text,
+                  ),
+                )
+              ],
             ),
-            pressed == true
-                ? Text(
-                    reply,style: TextStyle(fontSize: 16,letterSpacing: 2.0,),)
-                : Text(""),
-          ])
-        ],
+            Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Colors.grey[350], width: 1.0),
+                ),
+              ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    cursorHeight: 24,
+                    style: TextStyle(fontSize: 18),
+                    decoration: InputDecoration(
+                        hintText: "Compose",
+                        border: InputBorder.none,
+                        hintStyle:
+                            TextStyle(fontSize: 18, color: Colors.grey[700]),
+                        contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20)),
+                    keyboardType: TextInputType.text,
+                  ),
+                )
+              ],
+            ),
+            Column(children: [
+              IconButton(
+                icon: Icon(Icons.more_horiz_rounded),
+                onPressed: () {
+                  setState(() {
+                    pressed = !pressed;
+                    print("pressed");
+                  });
+                },
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              pressed == true
+                  ? Text(
+                      reply,
+                      style: TextStyle(
+                        fontSize: 16,
+                        letterSpacing: 2.0,
+                      ),
+                    )
+                  : Text(""),
+            ])
+          ],
+        ),
       ),
     );
   }

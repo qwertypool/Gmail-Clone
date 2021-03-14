@@ -41,11 +41,40 @@ class _ComposeState extends State<Compose> {
             onPressed: () {},
             color: Colors.grey[600],
           ),
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: () {},
-            color: Colors.grey[600],
-          )
+          PopupMenuButton<String>(
+            offset: Offset(50, 350),
+            icon: Icon((Icons.more_vert),
+            color: Colors.grey[600],),
+            itemBuilder: (BuildContext context) {
+              return [
+                PopupMenuItem<String>(
+                  value: '1',
+                  child: Text('Schedule Send'),
+                ),
+                PopupMenuItem<String>(
+                  value: '2',
+                  child: Text('Add from contacts'),
+                ),
+                PopupMenuItem<String>(
+                  value: '2',
+                  child: Text('Discard'),
+                ),
+                PopupMenuItem<String>(
+                  value: '2',
+                  child: Text('Save Draft'),
+                ),
+                PopupMenuItem<String>(
+                  value: '2',
+                  child: Text('Settings'),
+                ),
+                PopupMenuItem<String>(
+                  value: '2',
+                  child: Text('Help & Feedback'),
+                ),
+              ];
+            },
+            onSelected: (value) {}
+          ),
         ],
         elevation: 0,
       ),
