@@ -4,6 +4,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:share/share.dart';
 import 'package:clipboard_manager/clipboard_manager.dart';
 
+import 'drawer.dart';
+
 class Meet extends StatefulWidget {
   Meet({Key key}) : super(key: key);
   @override
@@ -28,7 +30,38 @@ class _MeetState extends State<Meet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      drawer: Drawers(),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Text(
+          'Meet',
+          style: TextStyle(color: Colors.black),
+        ),
+        centerTitle: true,
+        actions: <Widget>[
+          Container(
+            width: 65,
+            child: PopupMenuButton<String>(
+              icon: CircleAvatar(
+                  backgroundImage: AssetImage('assets/deepa2.jpg')),
+              itemBuilder: (BuildContext context) {
+                return [
+                  PopupMenuItem<String>(
+                    value: '1',
+                    child: Text('1'),
+                  ),
+                  PopupMenuItem<String>(
+                    value: '2',
+                    child: Text('2'),
+                  ),
+                ];
+              },
+            ),
+          ),
+        ],
+      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -243,7 +276,6 @@ class BottomSheetContent extends StatelessWidget {
                             'Get a meeting link to share',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          
                           onTap: () {
                             showAlertDialog(context);
                           },
@@ -286,12 +318,10 @@ class BottomSheetContent extends StatelessWidget {
   }
 
   String link = "https://meet.google.com/vgt-maqh-dvv";
- // String link = "https://";
+  // String link = "https://";
   showAlertDialog(BuildContext context) {
     // set up the button
-    Widget shareBtn = (
-      
-      FlatButton.icon(
+    Widget shareBtn = (FlatButton.icon(
       onPressed: () {
         _onShareData(context);
       },
@@ -304,61 +334,77 @@ class BottomSheetContent extends StatelessWidget {
           side: BorderSide(color: Colors.blue)),
     ));
     // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      contentPadding:EdgeInsets.fromLTRB(24, 20, 24, 2),
-      title: Text("Here's the link to your meeting"),
-      content: Column(
-        children: [
-          Text(
-              "Copy this link and send it to people you want to meet with. Be sure to save it so you can use it later, too."),
-          Text(
-            link,
-            maxLines: 3,
-            style: TextStyle(
-              backgroundColor: Colors.grey[300],
-            ),
-          ),
-          IconButton(
-                icon: Icon(Icons.copy),
-                onPressed: () {
-                  print("pressed");
-                  ClipboardManager.copyToClipBoard(link).then((result) {
-                    final snackBar = SnackBar(
-                      content: Text('Copied to Clipboard'),
-                      action: SnackBarAction(
-                        label: 'Undo',
-                        onPressed: () {},
-                      ),
-                    );
-                      Scaffold.of(context).showSnackBar(snackBar);    
-                  });
-                },
-              ),
-        ],
-      ),
-      actions: [
-        shareBtn,
-      ],
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15.0))),
-    );
-    
-    // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return alert;
+        return AlertDialog(
+          // backgroundColor: Colors.transparent,
+          contentPadding: EdgeInsets.fromLTRB(24, 20, 24, 2),
+          title: Text("Here's the link to your meeting"),
+          content: Builder(
+            builder: (context) {
+              // Get available height and width of the build area of this widget. Make a choice depending on the size.
+              var height = MediaQuery.of(context).size.height;
+              var width = MediaQuery.of(context).size.width;
+
+              return Container(
+                height: 180,
+                width: width,
+                child: Column(
+                  children: [
+                    Text(
+                        "Copy this link and send it to people you want to meet with. Be sure to save it so you can use it later, too."),
+                    Text(
+                      link,
+                      maxLines: 3,
+                      style: TextStyle(
+                        backgroundColor: Colors.grey[300],
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.copy),
+                      onPressed: () {
+                        print("pressed");
+                        ClipboardManager.copyToClipBoard(link).then((result) {
+                          final snackBar = SnackBar(
+                            content: Text('Copied to Clipboard'),
+                            action: SnackBarAction(
+                              label: 'Undo',
+                              onPressed: () {},
+                            ),
+                          );
+                          Scaffold.of(context).showSnackBar(snackBar);
+                        });
+                      },
+                    ),
+                    shareBtn,
+                  ],
+                ),
+              );
+            },
+          ),
+          // actions: [
+          //   Center(
+          //     child: shareBtn,
+          //   ),
+          // ],
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15.0))),
+        );
       },
     );
+
+    // show the dialog
   }
 
   _onShareData(BuildContext context) async {
     //final RenderBox box = context.findRenderObject();
     {
-      await Share.share(link,
-          // subject: ,
-         // sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size
-          );
+      await Share.share(
+        link,
+        // subject: ,
+        // sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size
+      );
     }
   }
 }
