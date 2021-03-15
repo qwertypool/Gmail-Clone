@@ -5,6 +5,7 @@ import 'package:demo3/tabs/reply.dart';
 // import 'package:demo3/tabs/forward.dart';
 
 // import 'package:demo3/tabs/reply_all.dart';
+// ignore: must_be_immutable
 class Gmail extends StatefulWidget {
   final User user;
   final Color image;

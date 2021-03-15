@@ -34,7 +34,7 @@ dependencies:
   responsive_flutter: ^0.0.4
   carousel_slider: ^3.0.0
   share: ^0.6.5+4
-  image_picker:
+ # image_picker:
   clipboard_manager: ^0.0.4
   file_picker: ^2.1.7
   floating_search_bar: ^0.3.0

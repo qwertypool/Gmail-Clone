@@ -74,13 +74,10 @@ class _ReplyState extends State<Reply> {
             },
             onSelected: (value) async {
               //if (value == '1')
-              print("entererd here");
               FilePickerResult result = await FilePicker.platform.pickFiles();
               if (result != null) {
                 file = File(result.files.single.path);
-                //String  path = await FilePicker.getFilePath(type: FileType.any);
                 print(file);
-                // print("entererd");
               }
             },
           ),
