@@ -48,10 +48,8 @@ class _GmailState extends State<Gmail> {
     //final longString = firstString + "\n\n\n" + secondString;
     //Color x = Colors.black;
     return Scaffold(
-      // backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        // leading: Icon(Icons.arrow_forward),
         actions: [
           IconButton(
               icon: Icon(Icons.archive),
@@ -188,8 +186,6 @@ class _GmailState extends State<Gmail> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        //width: MediaQuery.of(context).size.width * 0.3,
-                        //height: 30,
                         child: Row(
                           children: [
                             Text(
