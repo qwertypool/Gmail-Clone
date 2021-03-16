@@ -15,7 +15,7 @@ class Mails extends StatefulWidget {
 
 class _MailsState extends State<Mails> {
   ScrollController _scrollController = new ScrollController();
-  final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
+  static final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   bool show = true;
   @override
   void initState() {
@@ -169,6 +169,7 @@ class _MailsState extends State<Mails> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (_) => Gmail(
+                                                index: index,
                                                 user: mails[index - 1].sender,
                                                 image: mails[index - 1]
                                                     .sender

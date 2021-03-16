@@ -1,12 +1,13 @@
 import 'dart:ui';
 import 'package:demo3/models/user_model.dart';
+import 'package:demo3/models/message_model.dart';
+import 'package:demo3/tabs/mails.dart';
 import 'package:flutter/material.dart';
 import 'package:demo3/tabs/reply.dart';
-// import 'package:demo3/tabs/forward.dart';
 
-// import 'package:demo3/tabs/reply_all.dart';
 // ignore: must_be_immutable
 class Gmail extends StatefulWidget {
+  final int index;
   final User user;
   final Color image;
   final String time;
@@ -15,7 +16,8 @@ class Gmail extends StatefulWidget {
   bool isstarred;
 
   Gmail(
-      {this.user,
+      {this.index,
+      this.user,
       this.image,
       this.time,
       this.text,
@@ -27,7 +29,8 @@ class Gmail extends StatefulWidget {
 
 class _GmailState extends State<Gmail> {
   bool _hasBeenPressed = false;
-  GlobalKey _keyText = GlobalKey();
+  
+   GlobalKey _key2 = GlobalKey();
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
@@ -48,18 +51,52 @@ class _GmailState extends State<Gmail> {
     //final longString = firstString + "\n\n\n" + secondString;
     //Color x = Colors.black;
     return Scaffold(
+      //key: _key2,
       appBar: AppBar(
         backgroundColor: Colors.black,
         actions: [
           IconButton(
               icon: Icon(Icons.archive),
               onPressed: () {
-                setState(() {
-                  print('pressed');
-                });
+              //   Message deletedItem = mails.removeAt(widget.index - 1);
+              //   print(deletedItem);
+              //  // _key2.currentState
+              //     Scaffold.of(context).showSnackBar(
+              //       SnackBar(
+              //         content: Text(
+              //           "1 Archieved",
+              //           style: TextStyle(color: Colors.white),
+              //         ),
+              //         action: SnackBarAction(
+              //             label: "UNDO",
+              //             //onPressed: () {},
+              //             onPressed: () {
+              //               setState(
+              //                 () => mails.insert(widget.index - 1, deletedItem),
+              //               );
+              //               Navigator.push(
+              //                   context,
+              //                   MaterialPageRoute(
+              //                       builder: (builder) => Mails()));
+              //             } // this is what you needed
+              //             ),
+              //       ),
+              //     );
               }),
-          IconButton(icon: Icon(Icons.delete), onPressed: () {}),
-          IconButton(icon: Icon(Icons.mail), onPressed: () {}),
+          IconButton(icon: Icon(Icons.delete), onPressed: () {
+            mails.removeAt(widget.index - 1);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+              builder: (builder) => Mails()));
+             } 
+          ),
+          IconButton(icon: Icon(Icons.mail), onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+              builder: (builder) => Mails()));
+          }),
           PopupMenuButton<String>(
             onSelected: (value) {
               print(value);
@@ -109,7 +146,7 @@ class _GmailState extends State<Gmail> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    key: _keyText,
+                    key: _key2,
                     width: MediaQuery.of(context).size.width * 0.7,
                     height: 70,
                     child: Text(
@@ -225,18 +262,55 @@ class _GmailState extends State<Gmail> {
                       IconButton(
                         icon: Icon(Icons.reply),
                         onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (builder) => Reply(
-                                index: 1,
-                                title: "Reply",
-                                user:  widget.user.name,
-                                subject: widget.subject,
-                                msg: widget.text,
-                                time: widget.time
-                              )));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (builder) => Reply(
+                                      index: 1,
+                                      title: "Reply",
+                                      user: widget.user.name,
+                                      subject: widget.subject,
+                                      msg: widget.text,
+                                      time: widget.time)));
                         },
                       ),
-                      Icon(Icons.more_vert),
+                      PopupMenuButton<String>(
+                        offset: Offset(10, 40),
+                        onSelected: (value) {
+                          print(value);
+                        },
+                        itemBuilder: (BuildContext context) {
+                          return [
+                            PopupMenuItem(
+                              child: Text("Reply all"),
+                              value: "Reply all",
+                            ),
+                            PopupMenuItem(
+                              child: Text("Forward"),
+                              value: "Forward",
+                            ),
+                            PopupMenuItem(
+                              child: Text("Add star"),
+                              value: "Add star",
+                            ),
+                            PopupMenuItem(
+                              child: Text("Print"),
+                              value: "Print",
+                            ),
+                            PopupMenuItem(
+                              child: Text("Mark unread"),
+                              value: "Mark unread from here",
+                            ),
+                            PopupMenuItem(
+                              child: Text("Block linkedln"),
+                              value: "Block linkedln",
+                            ),
+                          ];
+                        },
+                      ),
+
+
+                      //Icon(Icons.more_vert),
                     ],
                   )
                 ],
@@ -320,7 +394,7 @@ class _GmailState extends State<Gmail> {
   }
 
   _getSizes() {
-    final RenderBox renderBoxRed = _keyText.currentContext.findRenderObject();
+    final RenderBox renderBoxRed = _key2.currentContext.findRenderObject();
     final sizeText = renderBoxRed.size;
     print("SIZE of Text: $sizeText");
   }

@@ -328,7 +328,7 @@ class BottomSheetContent extends StatelessWidget {
       icon: Icon(Icons.share),
       minWidth: 20,
       label: Text('Share'),
-      color: Colors.blue[400],
+      color: Colors.blue[300],
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
           side: BorderSide(color: Colors.blue)),
@@ -350,7 +350,8 @@ class BottomSheetContent extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                        "Copy this link and send it to people you want to meet with. Be sure to save it so you can use it later, too."),
+                        "Copy this link and send it to people you want to meet with. Be sure to save it so you can use it later, too.\n"),
+                    
                     Text(
                       link,
                       maxLines: 3,
