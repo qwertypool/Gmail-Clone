@@ -275,7 +275,7 @@ class _GmailState extends State<Gmail> {
                         },
                       ),
                       PopupMenuButton<String>(
-                        offset: Offset(10, 40),
+                        //offset: Offset(10, 40),
                         onSelected: (value) {
                           print(value);
                         },
