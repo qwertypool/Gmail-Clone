@@ -222,7 +222,20 @@ class _GmailState extends State<Gmail> {
                   ),
                   Row(
                     children: [
-                      Icon(Icons.reply),
+                      IconButton(
+                        icon: Icon(Icons.reply),
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (builder) => Reply(
+                                index: 1,
+                                title: "Reply",
+                                user:  widget.user.name,
+                                subject: widget.subject,
+                                msg: widget.text,
+                                time: widget.time
+                              )));
+                        },
+                      ),
                       Icon(Icons.more_vert),
                     ],
                   )
@@ -287,16 +300,18 @@ class _GmailState extends State<Gmail> {
           ),
         ),
       ),
-
       bottomNavigationBar: BottomAppBar(
         child: Padding(
           padding: EdgeInsets.only(bottom: 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              button(Icons.reply, "Reply",1,widget.user.name,widget.subject,widget.text,widget.time),
-              button(Icons.reply_all, "Reply All",2,widget.user.name,widget.subject,widget.text,widget.time),
-              button(Icons.arrow_forward, "Forward",3,widget.user.name,widget.subject,widget.text,widget.time),
+              button(Icons.reply, "Reply", 1, widget.user.name, widget.subject,
+                  widget.text, widget.time),
+              button(Icons.reply_all, "Reply All", 2, widget.user.name,
+                  widget.subject, widget.text, widget.time),
+              button(Icons.arrow_forward, "Forward", 3, widget.user.name,
+                  widget.subject, widget.text, widget.time),
             ],
           ),
         ),
@@ -310,13 +325,22 @@ class _GmailState extends State<Gmail> {
     print("SIZE of Text: $sizeText");
   }
 
-  Widget button(IconData icon, String text,int index,String name,String subject,String msg,String time) {
+  Widget button(IconData icon, String text, int index, String name,
+      String subject, String msg, String time) {
     return SizedBox(
       height: 46,
       child: OutlineButton.icon(
         onPressed: () {
-           Navigator.push(
-              context, MaterialPageRoute(builder: (builder) => Reply(index:index,title:text,user:name,subject:subject,msg:msg,time:time)));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (builder) => Reply(
+                      index: index,
+                      title: text,
+                      user: name,
+                      subject: subject,
+                      msg: msg,
+                      time: time)));
         },
         icon: Icon(icon),
         label: Text((text), style: TextStyle(color: Colors.grey[800])),
